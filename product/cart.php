@@ -4,15 +4,23 @@
 
 include("../dbconnection.php");
 
+// echo $_POST['name'];
 if (isset($_POST['product_id'], $_POST['quantity'])) {
+    $productId = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $subtotal = $_POST['subtotal'];
+    $id = $_SESSION['id'];
 
     // Set the post variables so we easily identify them, also make sure they are integer
     
-    mysqli_query($con,"INSERT INTO `cart`((`id`, `user_id`, `name`, `price`, `quantity`) VALUES ('$id','$name','$price','$quantity','$subtotal')");
+    mysqli_query($con,"INSERT INTO `cart`(`id`, `user_id`, `product_id`, `name`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$id','$productId','$name','$price','$quantity','$subtotal')");
     $product_id = (int)$_POST['product_id'];
     $quantity = (int)$_POST['quantity'];
+    $_SESSION['cart{$productId}'] = $productId;
     echo $product_id;
-    // Prepare the SQL statement, we basically are checking if the product exists in our databaser
+    // Prepare the SQL statement, we basically are checking if the product exists in our database
     $stmt = $pdo->prepare('SELECT * FROM products WHERE id = ?');
     $stmt->execute([$_POST['product_id']]);
     // Fetch the product from the database and return the result as an Array
@@ -117,10 +125,13 @@ if(isset($_GET['status'])) {
 //    mysqli_query($con,"insert into order(id,name,price,quantity,subtotal) values('$id','$name','$price','$quantity','$subtotal')");
    mysqli_query($con,"INSERT INTO `order`(`id`, `uid`, `user_email`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$uid','$user_email','$id','$name','$desc','$price','$quantity','$subtotal')");
    //INSERT INTO `order`(`id`, `uid`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$uid','$id','$name','$desc','$price','$quantity','$subtotal');
-   $_SESSION['']="Order Made";
+   mysqli_query($con,"DELETE FROM `cart` WHERE `product_id`=$id AND `user_id` = $uid");
    
-    }
    
+}
+$subtotal = 0.00;
+$products = array();
+unset($_SESSION['cart']);
     }
 $fields = array("live"=> "0",
 "oid"=> "112",
