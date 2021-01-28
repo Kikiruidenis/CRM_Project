@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2021 at 02:42 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Generation Time: Jan 28, 2021 at 05:07 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -49,6 +50,7 @@ INSERT INTO `admin` (`id`, `name`, `password`) VALUES
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `user_id` varchar(200) NOT NULL,
+  `product_id` int(255) NOT NULL,
   `name` varchar(200) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -78,8 +80,9 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `uid`, `user_email`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES
-(34, 7, 'mary@gmail.com', 6, 'CCTV Camera', 'Takes clear picture of everything object in your compound', '61.99', 7, '73.98'),
-(35, 7, 'mary@gmail.com', 8, 'Logo Design', 'Smart logo for your company', '11.99', 1, '73.98');
+(50, 10, 'nyongesamusembi@gmail.com', 1, 'Smart Watch', 'Unique watch made with stainless steel, ideal for those that prefer interative watches.', '29.99', 2, '98.36'),
+(51, 10, 'nyongesamusembi@gmail.com', 9, 'Smart Phone', 'Unique phone made with stainless steel, ideal for those that prefer interative phones', '19.19', 2, '98.36'),
+(52, 10, 'nyongesamusembi@gmail.com', 6, 'CCTV Camera', 'Takes clear picture of everything object in your compound', '61.99', 7, '247.96');
 
 -- --------------------------------------------------------
 
@@ -98,6 +101,13 @@ CREATE TABLE `orders` (
   `quantity` int(11) NOT NULL,
   `subtotal` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `uid`, `user_email`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES
+(6, '5', 'nyongesa', '2', 'name', 'desc', '33.00', 2, '200');
 
 -- --------------------------------------------------------
 
@@ -197,7 +207,8 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `mobile`, `gender`, `user
 (1, 'Kikirui', 'kikiruidenis@gmail.com', 'Kikirui06', '0702209976', 'm', NULL, '2022kericho', '2020-10-10 07:44:40'),
 (6, 'Denis', 'denis@gmail.com', '123456', '07678904566', 'm', NULL, NULL, '2020-11-25 17:45:07'),
 (7, 'Mary', 'mary@gmail.com', 'mary', '0798123456', 'm', NULL, NULL, '2020-11-25 17:45:39'),
-(8, 'Naomy', 'naomy@gmail.com', 'naomy', '0785132457', 'f', NULL, '657 nyeri', '2020-11-25 17:47:29');
+(8, 'Naomy', 'naomy@gmail.com', 'naomy', '0785132457', 'f', NULL, '657 nyeri', '2020-11-25 17:47:29'),
+(10, 'peter', 'nyongesamusembi@gmail.com', '12345678', '+254700583879', 'm', NULL, NULL, '2021-01-28 14:08:43');
 
 -- --------------------------------------------------------
 
@@ -277,7 +288,8 @@ INSERT INTO `usercheck` (`id`, `logindate`, `logintime`, `user_id`, `username`, 
 (56, '2021/01/09', '10:12:28am', '1', 'Kikirui', 'kikiruidenis@gmail.com'),
 (57, '2021/01/26', '06:20:39pm', '6', 'Denis', 'denis@gmail.com'),
 (58, '2021/01/26', '07:26:22pm', '6', 'Denis', 'denis@gmail.com'),
-(59, '2021/01/28', '02:29:56pm', '6', 'Denis', 'denis@gmail.com');
+(59, '2021/01/28', '02:29:56pm', '6', 'Denis', 'denis@gmail.com'),
+(60, '2021/01/28', '03:09:16pm', '10', 'peter', 'nyongesamusembi@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -346,19 +358,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -376,13 +388,13 @@ ALTER TABLE `query`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `usercheck`
 --
 ALTER TABLE `usercheck`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
