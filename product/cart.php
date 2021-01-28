@@ -99,9 +99,8 @@ If(isset($_POST['submit'])) {
    // $stmt = $db->prepare("INSERT INTO order (id,name,price,quantity,subtotal)
    // VALUES ('$product[id]','$product[name]','$product[price]','$product[quantity]','subtotal')");
 }
-if(isset($_GET['mc'])) {
+if(isset($_GET['status'])) {
 
-   
     foreach ($products as $product) {
       
         // $_SESSION['msg']="Successfully made an order with us";
@@ -114,9 +113,9 @@ if(isset($_GET['mc'])) {
    $quantity = $product['quantity'];
    $uid = $_SESSION['id'];
    $user_email =$_SESSION['login'];
-   
+
 //    mysqli_query($con,"insert into order(id,name,price,quantity,subtotal) values('$id','$name','$price','$quantity','$subtotal')");
-   mysqli_query($con,"INSERT INTO `orders`(`id`, `uid`, `user_email`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$uid','$user_email','$id','$name','$desc','$price','$quantity','$subtotal')");
+   mysqli_query($con,"INSERT INTO `order`(`id`, `uid`, `user_email`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$uid','$user_email','$id','$name','$desc','$price','$quantity','$subtotal')");
    //INSERT INTO `order`(`id`, `uid`, `product_id`, `name`, `desc`, `price`, `quantity`, `subtotal`) VALUES (NULL,'$uid','$id','$name','$desc','$price','$quantity','$subtotal');
    $_SESSION['']="Order Made";
    
@@ -135,7 +134,7 @@ $fields = array("live"=> "0",
 "p2"=> "020102292999",
 "p3"=> "",
 "p4"=> "900",
-"cbk"=> "http://localhost/CRM_Project/product?page=products",
+"cbk"=> "http://localhost/CRM_Project/product?page=cart",
 "cst"=> "1",
 "crl"=> "2"
 );
@@ -206,7 +205,7 @@ $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
                     }
                     ?>
 
-            
+http://localhost/CRM_Project/product/?page=products&status=aei7p7yrx4ae34&txncd=757118850812&msisdn_id=JOHN+DOE&msisdn_idnum=0700583879&p1=airtel&p2=020102292999&p3=&p4=900&uyt=195172763&agt=1930482332&qwh=1880952879&ifd=1223602478&afd=755997815&poi=257479690&id=112&ivm=112&mc=69.99&channel=MPESA
             
             <!-- <input value="Make Payment" type="submit" name="Make Payment" class="btn btn-primary pull-right">
                                    -->
