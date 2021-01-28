@@ -32,6 +32,9 @@ if (isset($_GET['id'])) {
         <form action="index.php?page=cart" method="post">
             <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
             <input type="hidden" name="product_id" value="<?=$product['id']?>">
+            <input type="hidden" name="name" value="<?=$product['name']?>">
+            <input type="hidden" name="price" value="<?=$product['price']?>">
+            <input type="hidden" name="subtotal" value="<?=$product['price'] * $product['quantity']?>">
             <input type="submit" value="Add To Cart">
         </form>
         <div class="description">
