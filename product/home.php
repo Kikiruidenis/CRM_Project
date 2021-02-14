@@ -20,9 +20,9 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="imgs/<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
             <span class="name"><?=$product['name']?></span>
             <span class="price">
-                &dollar;<?=$product['price']?>
+                Ksh;<?=$product['price']?>
                 <?php if ($product['rrp'] > 0): ?>
-                <span class="rrp">&dollar;<?=$product['rrp']?></span>
+                <span class="rrp">Ksh;<?=$product['rrp']?></span>
                 <?php endif; ?>
             </span>
         </a>

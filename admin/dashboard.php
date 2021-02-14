@@ -128,7 +128,7 @@ check_login();
 			         <div class="widget-stats">
                       <div class="wrapper transparent"> 
                       <?php
-                      $qr=mysqli_query($con,"select * from orders");
+                      $qr=mysqli_query($con,"SELECT * FROM `order`");
 					  $oq=mysqli_num_rows($qr);
 					  ?>
 						<span class="item-title">Total Orders</span> <span class="item-count animate-number semi-bold" data-value="<?php echo $oq?>" data-animation-duration="700">0</span>
@@ -137,7 +137,7 @@ check_login();
                     <div class="widget-stats">
                       <div class="wrapper transparent">
                        <?php
-                      $qr1=mysqli_query($con,"select * from orders");
+                      $qr1=mysqli_query($con,"SELECT * FROM `order`");
 					  $oq1=mysqli_num_rows($qr1);
 					  ?>
 						<span class="item-title">New Order's</span> <span class="item-count animate-number semi-bold" data-value="<?php echo $oq1;?>" data-animation-duration="700">0</span> 
@@ -146,7 +146,7 @@ check_login();
                     <div class="widget-stats ">
                       <div class="wrapper last"> 
                        <?php
-                      $qr2=mysqli_query($con,"select * from orders");
+                      $qr2=mysqli_query($con,"SELECT * FROM `order`");
 					  $oq2=mysqli_num_rows($qr2);
 					  ?>
 						<span class="item-title">In Progress</span> <span class="item-count animate-number semi-bold" data-value="<?php echo $oq2;?>" data-animation-duration="700">0</span> 
@@ -166,7 +166,7 @@ check_login();
 			<div class="tiles red m-b-10">
               <div class="tiles-body">
 			  <div class="controller"> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
-                <div class="tiles-title text-black">Total Queris </div>
+                <div class="tiles-title text-black">Total Queries </div>
 			         <div class="widget-stats">
                       <div class="wrapper transparent"> 
                       <?php $vt=mysqli_query($con,"select * from query");
@@ -204,11 +204,7 @@ check_login();
         </div>     
 		
 	 </div>
-                    <div class="col-lg-12" style="min-height:280px;">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> All User Visit </h3>
-								
+                   
 								<script type="text/javascript">
 								var visitorsCount = [];
 								var myCat =[];

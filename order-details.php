@@ -48,7 +48,7 @@ if(isset($_POST['remark']))
 		<h3>Order Details</h3>	
 	</div>
  	<?php
-    $ret=mysqli_query($con,"select * from orders where id='".$_GET['id']."'");
+    $ret=mysqli_query($con,"select * from order where id='".$_GET['id']."'");
 	while($row=mysqli_fetch_array($ret))
 	{
 	

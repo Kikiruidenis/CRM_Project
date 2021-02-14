@@ -155,6 +155,59 @@ $hashkey ="demoCHANGED";//use "demoCHANGED" for testing where vid is set to "dem
 
 $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
 ?>
+  <?php
+ 
+    
+        $url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        $curl = curl_init();
+        $credentials = base64_encode('eNuuA9aMW8RtcGrS14kdBnAQG5jUNDFS:PPhv1SJN7kInhKMH');
+        $credentials = base64_encode('YOUR_APP_CONSUMER_KEY:YOUR_APP_CONSUMER_SECRET');
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Basic '.$credentials)); //setting a custom header
+        curl_setopt($curl, CURLOPT_HEADER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        
+        $curl_response = curl_exec($curl);
+        $data = json_decode($curl_response);
+        echo $data;
+        $token = 'z98MEH8WJgbOq5zeTojoSKImGFR7';
+    
+
+  
+//   echo gettype(json_decode($curl_response));
+//   $publicKey = "./cert2.cer";
+//   $plaintext = "Kikirui06";
+  
+//   openssl_public_encrypt($plaintext, $encrypted, $publicKey, OPENSSL_PKCS1_PADDING);
+  
+//   echo base64_encode($encrypted);
+  
+  $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+  
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer '.$token)); //setting custom header
+
+
+  $curl_post_data = array(
+          //Fill in the request parameters with valid values
+         'ShortCode' => '174379',
+         'CommandID' => 'CustomerPayBillOnline',
+         'Amount' => '1',
+         'Msisdn' => '',
+         'BillRefNumber' => '00000'
+  );
+
+  $data_string = json_encode($curl_post_data);
+
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
+
+  $curl_response = curl_exec($curl);
+  print_r($curl_response);
+
+  echo $curl_response;
+  ?>
 
 <?=template_header('Cart')?>
 
@@ -188,11 +241,11 @@ $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
                         <br>
                         <a href="index.php?page=cart&remove=<?=$product['id']?>" class="remove">Remove</a>
                     </td>
-                    <td class="price">&dollar;<?=$product['price']?></td>
+                    <td class="price">Ksh;<?=$product['price']?></td>
                     <td class="quantity">
                         <input type="number" name="quantity-<?=$product['id']?>" value="<?=$products_in_cart[$product['id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
                     </td>
-                    <td class="price">&dollar;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
+                    <td class="price">Ksh;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -200,7 +253,7 @@ $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
         </table>
         <div class="subtotal">
             <span class="text">Subtotal</span>
-            <span class="price">&dollar;<?=$subtotal?></span>
+            <span class="price">Ksh;<?=$subtotal?></span>
         </div>
         <div class="buttons">
             <FORM action="https://localhost/CRM_Project/product?page=orders" metod='POST'>

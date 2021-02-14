@@ -60,7 +60,9 @@ check_login();
                   </tr>
                 </thead>
                 <tbody>
-                <?php $ret=mysqli_query($con,"select * from orders order by id desc");
+               
+        <?php
+         $ret=mysqli_query($con,"SELECT * FROM `order`");
 				$cnt=0;
 				while($row=mysqli_fetch_array($ret))
 				{?>

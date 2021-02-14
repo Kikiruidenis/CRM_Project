@@ -48,8 +48,8 @@ if(isset($_POST['remark']))
 		<h3>Order Details</h3>	
 	</div>
  	<?php
-	   $uid= $_SESSION['id'];
-     $ret=mysqli_query($con,"SELECT * FROM `orders` WHERE `uid` = $uid");
+	
+     $ret=mysqli_query($con,"SELECT * FROM `order` where id='".$_GET['id']."'");
 	while($row=mysqli_fetch_array($ret))
 	{
 	
@@ -73,6 +73,8 @@ if(isset($_POST['remark']))
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['user_email'];?><br>
                                             <strong>Product Name</strong>:
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['name'];?><br>
+											<strong>Product Quantity</strong>:
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['quantity'];?><br>
                                             <strong>Descripton.</strong>:
 											&nbsp;<?php echo $row['desc'];?><br>
 											<strong>Price</strong>:
@@ -81,13 +83,7 @@ if(isset($_POST['remark']))
                                         										 
 										<address>
 										</address>
-                                        <form name="admin_remarks" action="" method="post" enctype="multipart/form-data">
-                                        <address>
-											<strong>Remark</strong><br>
-										<textarea name="admin_remarks" cols="70" rows="4"></textarea><br /><br />
-                                        <input type="submit" name="admin_remarks" value="Submit" />
-										</address>
-                                        </form>
+                                       
 								</div>
 							</div>
 						</div> 
